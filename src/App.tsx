@@ -23,10 +23,6 @@ import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import TermsOfService from './components/TermsOfService';
 
-// Assets
-import spaceshipOrbitHero from './assets/images/spaceship_orbit_hero_1779255218451.png';
-import modularSpaceHub from './assets/images/modular_space_hub_1779255238841.png';
-
 // Static Data & Metadata
 import { SERVICES, BUSINESS_INFO, FAQ_ITEMS } from './data';
 
@@ -59,6 +55,28 @@ export default function App() {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Check the initial path on mount to handle direct deep link visits
+  useEffect(() => {
+    const path = window.location.pathname;
+    
+    // Give a small delay so elements render, then navigate
+    const timer = setTimeout(() => {
+      if (path === '/services') {
+        handleNavigate('services');
+      } else if (path === '/pricing') {
+        handleNavigate('pricing');
+      } else if (path === '/contact') {
+        handleNavigate('contact');
+      } else if (path === '/about' || path === '/about-us') {
+        handleNavigate('about');
+      } else if (path === '/terms' || path === '/terms-of-service') {
+        setIsTermsPage(true);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Intercept any anchor click event globally to ensure smooth scrolling
@@ -197,174 +215,89 @@ export default function App() {
         {/* HERO SECTION */}
         <section id="home" className="relative pt-20 pb-24 md:pt-28 md:pb-36 flex items-center justify-center overflow-hidden bg-brand-950">
           
-          {/* Spaceship.com Celestial backgrounds: deep neon gradients & grid lines */}
-          <motion.div 
-            animate={{
-              x: [0, 40, -20, 0],
-              y: [0, -30, 40, 0],
-              scale: [1, 1.12, 0.95, 1],
-              opacity: [0.35, 0.5, 0.3, 0.35]
-            }}
-            transition={{
-              duration: 18,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute top-10 left-1/4 -z-10 h-96 w-96 rounded-full bg-gradient-to-tr from-emerald-100/30 to-brand-100/20 blur-[100px]" 
-          />
+          {/* Subtle ambient light gradient */}
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
           
-          <motion.div 
-            animate={{
-              x: [0, -50, 30, 0],
-              y: [0, 40, -40, 0],
-              scale: [1, 0.9, 1.08, 1],
-              opacity: [0.25, 0.4, 0.2, 0.25]
-            }}
-            transition={{
-              duration: 22,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute bottom-10 right-1/3 -z-10 h-[380px] w-[380px] rounded-full bg-gradient-to-bl from-brand-100/20 to-brand-200/20 blur-[120px]" 
-          />
-
-          {/* Glowing planetary orbit outlines */}
-          <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none opacity-20">
-            <div className="w-[600px] h-[600px] rounded-full border border-brand-800/40 animate-[spin_50s_linear_infinite]" />
-            <div className="absolute w-[800px] h-[800px] rounded-full border border-dashed border-brand-800/30 animate-[spin_80s_linear_infinite_reverse]" />
-            <div className="absolute w-[400px] h-[400px] rounded-full border border-brand-800/50" />
-          </div>
-
-          {/* Starry nodes field overlay */}
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.08)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
-          
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center">
+            <div className="max-w-4xl mx-auto flex flex-col items-center justify-center space-y-8">
               
-              {/* Left Column (Content) */}
-              <div className="lg:col-span-7 text-left space-y-8">
-                
-                {/* Tagline pill */}
-                <motion.div 
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-900 border border-brand-800 px-4 py-1.5 text-xs font-mono font-bold text-emerald-700 shadow-sm"
-                >
-                  <Sparkles className="h-3.5 w-3.5 text-emerald-600 animate-pulse" />
-                  <span>Premium Modular Operations Support</span>
-                </motion.div>
+              {/* Tagline pill */}
+              <motion.div 
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 rounded-full bg-brand-900 border border-brand-800 px-4 py-1.5 text-xs font-mono font-bold text-emerald-700 shadow-sm"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-emerald-600 animate-pulse" />
+                <span>Premium Modular Operations Support</span>
+              </motion.div>
 
-                {/* Title */}
-                <div className="space-y-4">
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display leading-[1.15] tracking-tight text-brand-700"
-                  >
-                    We Engine the Metrics That <br className="hidden sm:inline" /> 
-                    <span className="text-emerald-600">
-                      Multiply Canadian Brands.
-                    </span>
-                  </motion.h1>
-
-                  <motion.p 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-base sm:text-lg text-slate-505 font-sans leading-relaxed max-w-2xl"
-                  >
-                    {BUSINESS_INFO.longTagline}
-                  </motion.p>
-                </div>
-
-                {/* Actions */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  className="flex flex-col sm:flex-row items-center gap-4 max-w-md"
-                >
-                  <button
-                    onClick={() => handleBookWithService()}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-brand-700 hover:bg-slate-800 px-6 py-4 text-sm font-bold text-white shadow-xl shadow-brand-800/10 transition-all cursor-pointer transform hover:-translate-y-0.5"
-                  >
-                    <span>Book Free Consultation</span>
-                    <ArrowRight className="h-4.5 w-4.5 text-emerald-300" />
-                  </button>
-                  
-                  <button
-                    onClick={() => handleNavigate('pricing')}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-white border border-brand-800 text-brand-700 hover:bg-slate-50 px-6 py-4 text-sm font-bold transition-all cursor-pointer"
-                  >
-                    Explore Price Calculator
-                  </button>
-                </motion.div>
-
-                {/* Telemetry Stats Rows */}
-                <motion.div 
+              {/* Title */}
+              <div className="space-y-4 max-w-3xl">
+                <motion.h1 
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.45 }}
-                  className="pt-8 grid grid-cols-2 lg:grid-cols-4 gap-6 border-t border-brand-800"
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-display leading-[1.15] tracking-tight text-brand-700 text-center"
                 >
-                  {[
-                    { label: 'ACTIVE CANADIAN SYSTEMS', val: '80+' },
-                    { label: 'HELPDESK SLA SLA', val: '<30s' },
-                    { label: 'AVG CONVERSION BOOST', val: '4.2x' },
-                    { label: 'OPERATION SCALE', val: '24/7' },
-                  ].map((stat, idx) => (
-                    <div key={idx} className="space-y-1">
-                      <p className="text-2xl sm:text-3xl font-black font-display text-brand-700 tracking-tight">{stat.val}</p>
-                      <p className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
-                    </div>
-                  ))}
-                </motion.div>
+                  We Engine the Metrics That <br className="hidden sm:inline" /> 
+                  <span className="text-emerald-600">
+                    Multiply Canadian Brands.
+                  </span>
+                </motion.h1>
 
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="text-base sm:text-lg text-slate-505 font-sans leading-relaxed max-w-2xl mx-auto text-center"
+                >
+                  {BUSINESS_INFO.longTagline}
+                </motion.p>
               </div>
 
-              {/* Right Column (High Tech Spaceship orbit widget with spaceship.com feel) */}
-              <div className="lg:col-span-5 relative hidden lg:block">
-                
-                {/* Decorative glowing orbits */}
-                <div className="absolute inset-0 -z-10 flex items-center justify-center">
-                  <div className="w-[450px] h-[450px] rounded-full border border-emerald-500/10 animate-[spin_35s_linear_infinite]" />
-                  <div className="absolute w-[350px] h-[350px] rounded-full border border-transparent border-t-emerald-500/20 border-b-emerald-500/15 animate-[spin_20s_linear_infinite_reverse]" />
-                </div>
-                
-                {/* Visual Glass Box holding the imported spaceship banner */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="bg-white p-4 rounded-3xl border border-brand-800 shadow-xl relative"
+              {/* Actions */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto"
+              >
+                <button
+                  onClick={() => handleBookWithService()}
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-brand-700 hover:bg-slate-800 px-6 py-4 text-sm font-bold text-white shadow-xl shadow-brand-800/10 transition-all cursor-pointer transform hover:-translate-y-0.5"
                 >
-                  <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-850">
-                    <img 
-                      src={spaceshipOrbitHero} 
-                      alt="Spaceship Operational Orbiting" 
-                      className="w-full h-full object-cover select-none scale-105 hover:scale-110 transition-transform duration-700"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  
-                  {/* Tactical operational telemetry readout badge */}
-                  <div className="absolute -bottom-4 -left-4 bg-white border border-brand-800 rounded-2xl p-3 shadow-2xl flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-emerald-50 text-emerald-600">
-                      <Sparkles className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-mono font-bold uppercase text-slate-400 tracking-wider">System Status</p>
-                      <p className="text-xs font-bold text-emerald-600 flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>Core Connected & Live</span>
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
+                  <span>Book Free Consultation</span>
+                  <ArrowRight className="h-4.5 w-4.5 text-emerald-300" />
+                </button>
                 
-              </div>
+                <button
+                  onClick={() => handleNavigate('pricing')}
+                  className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-white border border-brand-800 text-brand-700 hover:bg-slate-50 px-6 py-4 text-sm font-bold transition-all cursor-pointer"
+                >
+                  Explore Price Calculator
+                </button>
+              </motion.div>
+
+              {/* Telemetry Stats Rows */}
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                className="pt-8 grid grid-cols-2 lg:grid-cols-4 gap-6 border-t border-brand-800 w-full"
+              >
+                {[
+                  { label: 'ACTIVE CANADIAN SYSTEMS', val: '80+' },
+                  { label: 'HELPDESK SLA SLA', val: '<30s' },
+                  { label: 'AVG CONVERSION BOOST', val: '4.2x' },
+                  { label: 'OPERATION SCALE', val: '24/7' },
+                ].map((stat, idx) => (
+                  <div key={idx} className="space-y-1 text-center">
+                    <p className="text-2xl sm:text-3xl font-black font-display text-brand-700 tracking-tight">{stat.val}</p>
+                    <p className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-widest">{stat.label}</p>
+                  </div>
+                ))}
+              </motion.div>
 
             </div>
           </div>
@@ -428,7 +361,7 @@ export default function App() {
         </section>
 
         {/* PRICING MODULAR CALCULATOR */}
-        <section id="pricing" className="py-24 bg-white border-t border-brand-800 relative">
+        <section id="pricing" className="py-24 bg-brand-950 border-t border-brand-800 relative">
           {/* Subtle highlight ambient globe */}
           <div className="absolute top-1/3 left-10 h-80 w-80 rounded-full bg-emerald-50/20 blur-[120px] pointer-events-none" />
           
@@ -462,7 +395,7 @@ export default function App() {
                 <div className="w-full border-t border-dashed border-brand-850"></div>
               </div>
               <div className="relative flex justify-center">
-                <span className="bg-white px-4 text-xs font-mono font-bold text-emerald-600 uppercase tracking-widest">
+                <span className="bg-brand-950 px-4 text-xs font-mono font-bold text-emerald-600 uppercase tracking-widest">
                   Custom Estimate Calculator
                 </span>
               </div>

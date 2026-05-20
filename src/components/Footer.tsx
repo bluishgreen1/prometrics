@@ -34,7 +34,7 @@ export default function Footer({ onNavigate, onTermsClick }: FooterProps) {
             </div>
             
             <p className="text-xs text-slate-300 leading-relaxed font-sans max-w-sm">
-              We deploy custom web infrastructures, automated customer response desks, and lead generation systems tailored for small, medium, and enterprise corporate partners across Canada.
+              We deploy custom Web Presence infrastructures, automated customer response desks, and Growth Engine systems tailored for small, medium, and enterprise corporate partners across Canada.
             </p>
             
             <div className="flex items-center gap-4 text-xs font-mono text-slate-400">

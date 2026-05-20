@@ -14,7 +14,7 @@ export const BUSINESS_INFO = {
 export const SERVICES: Service[] = [
   {
     id: 'web-presence',
-    title: 'Website Building',
+    title: 'Web Presence',
     shortDescription: 'Modern, blazing-fast web platforms engineered for peak conversion, mobile-first design, and exceptional search optimization.',
     fullDescription: 'Custom React Web Applications engineered for speed, mobile viewports, and regional business growth. No generic page-builders—complete semantic SEO integration and responsive design with high-fidelity branding.',
     iconName: 'Globe',
@@ -34,7 +34,7 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'growth-engine',
-    title: 'Lead Generation & Outreach',
+    title: 'Growth Engine',
     shortDescription: 'Algorithmic multi-channel systems designed to automate outreach and funnel qualified buy-ready leads directly to you.',
     fullDescription: 'Outbound and inbound campaigns utilizing optimized landing pages, active client message builders, and structured pipeline management to turn cold prospects into warm consultation bookings.',
     iconName: 'TrendingUp',
@@ -126,7 +126,7 @@ export interface DetailedPricingService {
 export const DETAILED_PRICING_SERVICES: DetailedPricingService[] = [
   {
     id: 'web-presence',
-    title: 'Website Building',
+    title: 'Web Presence',
     marketHeader: 'Market Rate: starts from $2,500',
     option1Title: 'Option 1 — One-Time Fee',
     option1Tiers: [
@@ -199,7 +199,7 @@ export const DETAILED_PRICING_SERVICES: DetailedPricingService[] = [
   },
   {
     id: 'growth-engine',
-    title: 'Lead Generation & Outreach',
+    title: 'Growth Engine',
     marketHeader: 'Market Rate: starts from $2,000 / month',
     option1Title: 'Option 1 — Monthly Flat Retainer',
     option1Tiers: [
@@ -435,14 +435,14 @@ export const BUNDLE_DEALS: BundleDealDetails[] = [
     id: 'starter-pack',
     name: 'Starter pack',
     badge: 'Launch Fast',
-    servicesIncluded: 'Website + Lead Generation',
+    servicesIncluded: 'Web Presence + Growth Engine',
     tierSummary: 'Small tier scale setup',
     regularPrice: 'Custom Quote',
     dealPrice: 'Custom Quote',
     saveText: 'Custom Discount',
     features: [
-      'Website Build: custom design, mobile-first, and SEO setup',
-      'Lead Gen outreach: email outreach campaigns planning',
+      'Web Presence: custom design, mobile-first, and SEO setup',
+      'Growth Engine outreach: email outreach campaigns planning',
       'Primary on-page rank optimization strategy'
     ]
   },
@@ -450,13 +450,13 @@ export const BUNDLE_DEALS: BundleDealDetails[] = [
     id: 'visibility-pack',
     name: 'Visibility pack',
     badge: 'Establish Presence',
-    servicesIncluded: 'Website + Digital Marketing',
+    servicesIncluded: 'Web Presence + Digital Marketing',
     tierSummary: 'Small tier scale setup',
     regularPrice: 'Custom Quote',
     dealPrice: 'Custom Quote',
     saveText: 'Custom Discount',
     features: [
-      'Website Build: mobile layout, Google Maps, and contact configurations',
+      'Web Presence: mobile layout, Google Maps, and contact configurations',
       'Digital Marketing: Google SEO authority plus social posts templates',
       'Continuous performance management baseline'
     ]
@@ -465,14 +465,14 @@ export const BUNDLE_DEALS: BundleDealDetails[] = [
     id: 'most-popular-bundle',
     name: 'Most popular',
     badge: 'Best Value Deal',
-    servicesIncluded: 'Full presence — Website + Lead Gen + Receptionist',
+    servicesIncluded: 'Full presence — Web Presence + Growth Engine + Receptionist',
     tierSummary: 'Medium tier scale setup',
     regularPrice: 'Custom Quote',
     dealPrice: 'Custom Quote',
     saveText: 'Custom Discount',
     features: [
-      'Website Build: responsive layout, customizable animations, full SEO package',
-      'Lead Gen: active multi-channel outreach, email plus social resonance sequences',
+      'Web Presence: responsive layout, customizable animations, full SEO package',
+      'Growth Engine: active multi-channel outreach, email plus social resonance sequences',
       'Receptionist Support: conversation flow, web-chat desk, voice automation'
     ]
   },
@@ -480,13 +480,13 @@ export const BUNDLE_DEALS: BundleDealDetails[] = [
     id: 'growth-machine',
     name: 'Growth machine',
     badge: 'Pipeline Engine',
-    servicesIncluded: 'Lead Gen + Receptionist + Digital Marketing',
+    servicesIncluded: 'Growth Engine + Receptionist + Digital Marketing',
     tierSummary: 'Medium tier scale setup',
     regularPrice: 'Custom Quote',
     dealPrice: 'Custom Quote',
     saveText: 'Custom Discount',
     features: [
-      'Lead Gen: advanced outbound outreach email and social profiles tracking',
+      'Growth Engine: advanced outbound outreach email and social profiles tracking',
       'Receptionist Support: operational customer logging and calendar system onboarding',
       'Digital Marketing: technical SEO audits and Google/Meta ad layouts'
     ]
@@ -501,7 +501,7 @@ export const BUNDLE_DEALS: BundleDealDetails[] = [
     dealPrice: 'Custom Quote',
     saveText: 'Custom Discount',
     features: [
-      'Custom website build, full CRM integrations, and billing modules',
+      'Custom Web Presence, full CRM integrations, and billing modules',
       'Outreach campaigns across premium channels and selected market niches',
       'Sovereign support coverage, customized voice training, and dedicated coordination'
     ]
