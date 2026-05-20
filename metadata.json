@@ -1,0 +1,6 @@
+{
+  "name": "ProMetrics",
+  "description": "Premium corporate website and services platform for ProMetrics Canada, offering Web Presence, Growth Engine, 24/7 Customer Support, Smart Receptionist, and Digital Marketing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
