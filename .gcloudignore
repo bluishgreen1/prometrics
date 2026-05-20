@@ -1,0 +1,25 @@
+# This file specifies files and directories to ignore when uploading to Google Cloud Build.
+# It works similarly to .gitignore.
+
+# Ignore Git directory and ignore files
+.git/
+.gitignore
+.gcloudignore
+
+# Ignore Docker state/sandboxes directories
+.docker/
+.docker/sandboxes/
+.docker/sandboxes/sandboxd.sock
+
+# Ignore packages/build files
+node_modules/
+dist/
+build/
+coverage/
+
+# Mac file system metadata
+.DS_Store
+
+# Environments
+.env*
+!.env.example
