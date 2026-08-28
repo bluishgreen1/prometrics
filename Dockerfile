@@ -1,5 +1,5 @@
-# Use the official Node.js image
-FROM node:22-slim
+# Use the official Node.js image (24+ required by the geoip-lite analytics dependency)
+FROM node:24-slim
 
 # Set the working directory inside the container
 WORKDIR /app

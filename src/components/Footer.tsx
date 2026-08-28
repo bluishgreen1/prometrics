@@ -123,8 +123,13 @@ export default function Footer({ onNavigate, onTermsClick }: FooterProps) {
             </button>
           </div>
           
-          <p className="flex items-center gap-1">
-            Engineered with <Heart className="h-3 w-3 text-emerald-400 fill-emerald-400" /> in Canada for business growth.
+          <p className="flex items-center gap-3">
+            <span className="flex items-center gap-1">
+              Engineered with <Heart className="h-3 w-3 text-emerald-400 fill-emerald-400" /> in Canada for business growth.
+            </span>
+            <a href="/analytics" className="text-slate-600 hover:text-emerald-400 transition" title="Traffic analytics (admin)">
+              Admin
+            </a>
           </p>
         </div>
 

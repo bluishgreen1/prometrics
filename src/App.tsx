@@ -22,11 +22,22 @@ import AboutUs from './components/AboutUs';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import TermsOfService from './components/TermsOfService';
+import AnalyticsDashboard from './components/AnalyticsDashboard';
 
 // Static Data & Metadata
 import { SERVICES, BUSINESS_INFO, FAQ_ITEMS } from './data';
+import { trackPageView } from './lib/analytics';
+
+const SECTION_PATHS: Record<string, string> = {
+  home: '/',
+  services: '/services',
+  pricing: '/pricing',
+  about: '/about',
+  contact: '/contact',
+};
 
 export default function App() {
+  const isAnalyticsRoute = window.location.pathname.startsWith('/analytics');
   const [isTermsPage, setIsTermsPage] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isBookModalOpen, setIsBookModalOpen] = useState(false);
@@ -59,8 +70,10 @@ export default function App() {
 
   // Check the initial path on mount to handle direct deep link visits
   useEffect(() => {
+    if (isAnalyticsRoute) return;
+
     const path = window.location.pathname;
-    
+
     // Give a small delay so elements render, then navigate
     const timer = setTimeout(() => {
       if (path === '/services') {
@@ -73,6 +86,9 @@ export default function App() {
         handleNavigate('about');
       } else if (path === '/terms' || path === '/terms-of-service') {
         setIsTermsPage(true);
+        trackPageView('/terms');
+      } else {
+        trackPageView('/');
       }
     }, 300);
 
@@ -107,7 +123,8 @@ export default function App() {
   const handleNavigate = (sectionId: string) => {
     setIsTermsPage(false);
     setActiveSection(sectionId);
-    
+    trackPageView(SECTION_PATHS[sectionId] || `/${sectionId}`);
+
     // Allow React screen state switcher to cycle
     setTimeout(() => {
       const el = document.getElementById(sectionId);
@@ -190,6 +207,10 @@ export default function App() {
   };
 
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+
+  if (isAnalyticsRoute) {
+    return <AnalyticsDashboard />;
+  }
 
   return (
     <div className="min-h-screen bg-brand-950 font-sans antialiased text-brand-700 relative leading-relaxed overflow-x-hidden">
@@ -473,7 +494,7 @@ export default function App() {
       )}
 
       {/* CORPORATE FOOTER */}
-      <Footer onNavigate={handleNavigate} onTermsClick={() => { setIsTermsPage(true); window.scrollTo({ top: 0, behavior: 'instant' }); }} />
+      <Footer onNavigate={handleNavigate} onTermsClick={() => { setIsTermsPage(true); trackPageView('/terms'); window.scrollTo({ top: 0, behavior: 'instant' }); }} />
 
       {/* BOOKING SYSTEM MODAL BOX */}
       <AnimatePresence>
